@@ -1,0 +1,276 @@
+Umesh, 11+ Devops
+
+GIT, Jenkins, docker, k8s, Ansible, monitoring, maven, agile, introduction to cloud computing, terraform , packer, artifactory, sonarqube
+
+
+Devops: Father of Devops > Patrick Dubois
+Devops is all about improvement in existing system. it involve tool which prior and later.
+
+Devops tools vs Devops Supporting tool
+======================================
+When Devops Started > 2007 and 2008
+When GIT started > 2005
+
+GIT started prior to Devops....
+is GIT a devops tool?
+
+Lets Understand existing system.
+===============================
+My requirement is I want to make learning website, Video training.
+
+Application development life cycle
+
+Plan  Code  Build  Test
+Release Deploy Operate Monitor
+
+
+Plan: My requirement and it's study
+
+Codding: Here we do codding[Converting my plan into programming language]
+
+Build: We will integrate codding[business logic] with non business login[Like Image]
+
+Test: Here We would be testing our outcome with plan
+
+*** CMMI > Capability Maturity Model Integration (CMMI) is a process level improvement training and appraisal program. Administered by the CMMI Institute, a subsidiary of ISACA, it was developed at Carnegie Mellon University (CMU).
+
+Education website, I would be doing 5 round of testing
+1) Unit testing
+2) System Testing
+3) Integration testing
+4) End to end testing
+5) User acceptance testing
+
+Dev    >  Test   > preprod   > Production[End user code]
+
+Release: Deploying the code in enviroenment other then production
+
+Deploy: When I deploy the code into production it's Deploy.
+
+Operate: End to end maintenance.
+
+Monitor: Here you would be monitoring your application.
+
+Development Phase: Plan code Build test > Developer, tester, build Engineer, Artitect.
+Operation phase: Release deploy Operate and Monitor > Ops Team, Monitoring team
+
+* Devlopment teams are from mars and operations are from venus
+Link: https://www.zdnet.com/article/devs-are-from-mars-ops-are-from-venus-can-analytics-bridge-the-gap/
+
+add(a,b)
+{
+int a,b,c;  // long a,b,c; 
+c=a+b
+}
+
+Requirement is Application team want to change integer to long
+Integer limit 0- 65535
+              0 to 2,147,483,647
+
+
+Here Development team want to push this code as soon as possible, but operation team want them to follow the WOW[Way of working]
+
+in around 2000 Development team, and operation team are concider each other as enemy.
+
+Example: Bank cutomer care[Call execuitive/help desk/ Operation people]
+Who created bank website> Developer
+
+
+In Setup Operation team is the front desk, and they get to pay penality for developer mistake. in return developer will not respect Operation. To solve this problem Devops Came to picture
+
+
+Devops is set of 5 best practices-
+1) Treat Ops as first-class citizens from the point of view of requirements.
+Adding requirements to a system from Ops may require some architectural
+modification. In particular, the Ops requirements are likely to be in the
+area of logging, monitoring, and information to support incident handling.
+These requirements will be like other requirements for modifications to a
+system: possibly requiring some minor modifications to the architecture
+but, typically, not drastic modifications.
+
+
+2)Make Dev more responsible for relevant incident handling. By itself, this
+change is just a process change and should require no architectural
+modifications. However, just as with the previous category, once Dev
+becomes aware of the requirements for incident handling, some
+architectural modifications may result.
+
+3) Enforce deployment process used by all, including Dev and Ops
+personnel. In general, when a process becomes enforced, some individuals
+may be required to change their normal operating procedures and,
+possibly, the structure of the systems on which they work. One point where
+a deployment process could be enforced is in the initiation phase of each
+system. Each system, when it is initialized, verifies its pedigree. That is, it
+arrived at execution through a series of steps, each of which can be
+checked to have occurred. Furthermore, the systems on which it depends
+(e.g., operating systems or middleware) also have verifiable pedigrees
+
+
+4) Use continuous deployment. Continuous deployment is the practice that
+leads to the most far-reaching architectural modifications. On the one
+hand, an organization can introduce continuous deployment practices with
+no major architectural changes
+
+5) Develop infrastructure code with the same set of practices as application
+code. These practices will not affect the application code but may affect
+the architecture of the infrastructure code.
+
+
+So Implement these best practices we have Devops Tools
+GIT and Jenkins[CICD] Docker, K8s, Tf, Packer, Ansible, Monitoring, Maven, Sonarcube, artifactory.
+
+Lab:killercoda.com/
+
+
+[Agile]
+To overcome hierarchy in development team, group of 17 people decided 12 rules that known as agile principles
+
+The four values of the Agile Manifesto are:
+
+    Individuals and interactions over processes and tools
+    Working software over comprehensive documentation
+    Customer collaboration over contract negotiation
+    Responding to change over following a plan
+
+What are the 12 Agile Manifesto principles?
+
+The 12 principles of agile software development as outlined in the Agile Manifesto are as follows:
+
+    Our highest priority is to satisfy the customer through early and continuous delivery of valuable software.
+    Welcome changing requirements, even late in development. Agile processes harness change for the customer’s competitive advantage.
+    Deliver working software frequently, from a couple of weeks to a couple of months, with a preference to the shorter timescale.
+    Business people and developers must work together daily throughout the project.
+    Build projects around motivated individuals. Give them the environment and support they need, and trust them to get the job done.
+    The most efficient and effective method of conveying information to and within a development team is face-to-face conversation.
+    Working software is the primary measure of progress.
+    Agile processes promote sustainable development. The sponsors, developers, and users should be able to maintain a constant pace indefinitely.
+    Continuous attention to technical excellence and good design enhances agility.
+    Simplicity — the art of maximizing the amount of work not done — is essential.
+    The best architectures, requirements, and designs emerge from self-organizing teams.
+    At regular intervals, the team reflects on how to become more effective, then tunes and adjusts its behavior accordingly.
+
+
+
+[Design Thinking]
+
+Think before you speak > Techinical implemention of this statement is design thinking.
+
+Video for design thinking: https://www.youtube.com/watch?v=_r0VX-aU_T8
+Video for Devops as per patrick: https://www.youtube.com/watch?v=5VqXqtL0xQI
+
+Class2: Golden image, packer and maven tool
+Class3: Docker Introduction
+Class4: Docker Introduction2 
+
+1) Homework is very important.
+2) Alway stop me when you have doubt.
+3) Alway keep expressing yourself.
+4) Please dont make any notes.
+5) Google is the best friend.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
