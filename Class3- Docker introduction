@@ -1,0 +1,216 @@
+./mvnw clean package -DskipTests
+=================================
+
+Today's agenda Docker.
+
+Vi command
+==========
+Vi is editor
+
+Open file in vi editor> vi filename
+to make file in insertmode> i
+to make file out of insert mode> esc[first key of keyboard]
+to save containt > :wq
+to quite> :q
+
+Practice lab: https://killercoda.com/playgrounds/scenario/ubuntu
+
+
+In the last class we have performed host deployment where we have executed below steps
+
+apt-get update
+apt install openjdk-17-jre-headless -y
+
+git clone <URL>
+git clone https://github.com/spring-projects/spring-petclinic.git
+cd spring-petclinic
+./mvnw package
+java -jar target/*.jar
+
+Lets listout problem that we need to solve with docker
+
+1) Application dependancy play very important role, we need to install dependancy prior to application installation.
+
+ubuntu $ ./mvnw package
+Error: JAVA_HOME is not defined correctly.
+  We cannot execute 
+
+
+2) Speed of Application
+Size of ubuntu OS: Size of Ubuntu OS varies from 40 MB (minimal) to 4 GB. if size is minumum the speed is high.
+
+size of OS = core package + utilities[command used in OS]
+
+ubuntu@ip-172-31-27-0:/bin$ ls | wc -l
+972
+
+Out of 972 we hardly use appox 30 commands, and remaining are useful for us which occury the size and making system bulky.
+
+3) Integration
+
+
+What is Docker?
+==============
+Docker is a platform which package our application and it's dependancy, so we can run it anywhere.
+
+How you will package the application?
+=====================================
+to package application Docker has given steps that we need follow.
+
+How to install docker: https://get.docker.com/
+
+Steps1) We need creating dockerfile where we would be writing all the instructions for packaging the application
+          touch <filename> # Create the file
+          touch dockerfile
+          [Only first time]
+
+Step2) First instruction of docker image should be from/FROM <OS-name>
+          from ubuntu
+
+Step3) To execute any linux command we need to run in below syntax
+          CMD <linux command>
+
+#Exacize1: Create a docker image with ubuntu operating system, and print hello world
+ 
+FROM ubuntu
+CMD echo "Hello-wold"
+
+step4) to create docker image please run below commands
+       docker build -t <image-name> <location of dockerfile>
+       docker build -t image1 .
+
+
+step5) to run docker image
+       docker run <imagename>
+
+#Exacize number 2: Capital letter vs small letter
+
+Step6) If we are installing any software then we need to use RUN command
+RUN <Linux command>
+
+# Create a docker image in centos operting system, and install java
+   from centos
+   RUN sudo yum install java
+
+By default docker run with root user, and it it having minimum utilities
+ > [2/2] RUN sudo yum install java -y:
+0.387 /bin/sh: sudo: command not found
+
+FROM centos
+
+RUN cd /etc/yum.repos.d/
+RUN sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*
+RUN sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
+
+RUN yum -y install java
+
+CMD /bin/bash
+
+Lets take real time example
+===========================
+Create docker file for spring pet clinic
+
+FROM ubuntu
+RUN apt-get update
+RUN apt install openjdk-17-jre-headless -y
+RUN apt-get update
+RUN apt install git -y
+RUN git clone https://github.com/spring-projects/spring-petclinic.git
+WORKDIR spring-petclinic
+RUN ./mvnw clean package -DskipTests
+CMD java -jar target/*.jar
+
+* if we have multiple linux command then we put CMD in last instruction
+
+Step7) to change directory we would be using workdir
+RUN cd > workdir[changing the directory]
+   
+Step8) To open a port we need to run the command
+       EXPOSE <port-number> 
+
+
+What is Port?
+In 1 server multiple application can run, to differentiate between application we must have some mechanism
+<Host>:<port>
+
+Port is range of mathamatical number which create virtual host from host.
+
+Docker playground
+=================
+Docker playground is a platform provider by docker to execute docker releated activities
+Link: https://labs.play-with-docker.com/
+
+Docker is very fast in compare with Virtual machine.
+
+Docker architecture
+===================
+In docker architecture we have 3 components:
+1) Docker client: it's command that we type to connect with docker
+2) Docker server/Daemon
+
+
+3) Image store: Place where we would be storing our images or we share image
+Docker image store is known as docker hub where we will install our images
+URL: https://hub.docker.com/
+
+*** Docker alway work on local store, if he is not able to find the image it will download from master.
+root@ip-172-31-27-0:~# docker run nginx
+Unable to find image 'nginx:latest' locally
+latest: Pulling from library/nginx
+a803e7c4b030: Pull complete
+8b625c47d697: Pull complete
+4d3239651a63: Pull complete
+0f816efa513d: Pull complete
+01d159b8db2f: Pull complete
+5fb9a81470f3: Pull complete
+9b1e1e7164db: Pull complete
+
+*** Docker works in layering system, it means all the instruction would be layer, and those layers are reusable.
+
+Docker command cheatsheet: https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwjJ26Xwr8GBAxXVmFYBHTkYCNAQFnoECBEQAQ&url=https%3A%2F%2Fdocs.docker.com%2Fget-started%2Fdocker_cheatsheet.pdf&usg=AOvVaw0JcpwQBtWjt88-OoOF1oo6&opi=89978449 
+
+Tomorrow agenda
+===============
+Practicing docker commands
+
+Homework
+========
+Homework: 
+
+1) https://www.edureka.co/blog/what-is-docker-container
+2) https://hub.docker.com/signup
+3) cheatsheet: https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwjJ26Xwr8GBAxXVmFYBHTkYCNAQFnoECBEQAQ&url=https%3A%2F%2Fdocs.docker.com%2Fget-started%2Fdocker_cheatsheet.pdf&usg=AOvVaw0JcpwQBtWjt88-OoOF1oo6&opi=89978449 
+
+Why containers?
+1) It's easy to package everything that may application needed, so when I do autoscalling/scalling down, I should not feel that  need to install some depending software.
+
+2) One application you can run multiple times
+
+3) Docker is standard packging software
+
+What is we are not having docker?
+1) Lets say I having linux installed in my system(ubuntu:18:04), so once in month I need to install some security patches, when we will install security patches it may impact application, I will bring my application with own dependancy, so it would be not using host parameter
+
+Microservices:
+==============
+- Breaking application into multiple independent applications.
+
+Advantage
+=========
+- it is cost saving, and effective
+
+Lets say I want to design Application called facebook, and I am having below team
+1) Design and architect Team > 5
+2) Codding team(Development team) > 5
+3) Testing team >5 
+4) Deployment team >5
+
+Total time to deliver the project= Sum{time taken by indivisual team}
+
+In above example I would be delivering the project in 20 days, but my 75% resource is idle. it's increasing cost of my project.
+
+If I will follow microservices then I would be able to delivery my project in 8 days which means it is faster and cost errective
+
+Resource utilization in microservice
+=====================================
+Are high, and effective
