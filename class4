@@ -190,3 +190,8 @@ docker was not supported in earlier edition, but from window 10 onwards they sta
 
 - Docker swarm
  So far we are doing all the practice in 1 host, but in real time we required multiple host, for that docker has solution called docker swarm
+
+
+Homework: Go through all the douments present in location Devops_Engineering\Container Engineering\Docker\Docker_old
+
+
