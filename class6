@@ -1,0 +1,186 @@
+Today's Topic: Ansible and Monitoring
+Tomorrow: Cloudcomputing, packer,terraform and DevSecops, vi editor SRE
+
+
+ec2-52-13-20-249.us-west-2.compute.amazonaws.com
+ec2-35-89-208-169.us-west-2.compute.amazonaws.com
+ec2-35-92-140-223.us-west-2.compute.amazonaws.com
+ec2-35-91-218-3.us-west-2.compute.amazonaws.com
+ec2-52-27-244-214.us-west-2.compute.amazonaws.com
+
+Step1: Change PasswordAuthentication to yes in /etc/ssh/sshd_config
+sudo service sshd restart
+
+Step2: sudo adduser devops
+
+Step3: sudo vi /etc/sudoers and give Sudo permission to devops
+devops   ALL=(ALL:ALL) NOPASSWD:ALL
+
+Step4: Login by devops user to master/nodes
+
+Step4: Install ansible on master by devops user
+$ sudo apt update
+$ sudo apt install software-properties-common
+$ sudo apt-add-repository --yes --update ppa:ansible/ansible
+$ sudo apt install ansible
+
+Step:5 
+ssh-keygen(On Master)
+ssh-copy-id -i ~/.ssh/id_rsa.pub <user-id>@<x-host(slave-host-name) #These commands needs to run on Master
+
+
+ansible -i /etc/ansible/hosts -m command -a "uptime" all
+ansible-playbook -i /etc/ansible/hosts nginx_install.yml
+
+
+https://docs.ansible.com/ansible/latest/network/getting_started/first_playbook.html
+
+
+ssh-copy-id -i ~/.ssh/id_rsa.pub devops@ec2-52-13-20-249.us-west-2.compute.amazonaws.com
+ssh-copy-id -i ~/.ssh/id_rsa.pub devops@ec2-35-89-208-169.us-west-2.compute.amazonaws.com
+ssh-copy-id -i ~/.ssh/id_rsa.pub devops@ec2-35-92-140-223.us-west-2.compute.amazonaws.com
+ssh-copy-id -i ~/.ssh/id_rsa.pub devops@ec2-35-91-218-3.us-west-2.compute.amazonaws.com
+ssh-copy-id -i ~/.ssh/id_rsa.pub devops@ec2-52-27-244-214.us-west-2.compute.amazonaws.com
+
+
+Suppose,
+
+1) I want to know the time since when server is up.
+
+2) I want to know the hostname of server
+
+
+I want install nginx software in all machine
+
+YAML code:
+=========
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: ensure nginx is at the latest version
+      apt: name=nginx state=latest update_cache=yes
+
+    - name: start nginx
+      service:
+          name: nginx
+          state: started
+
+
+Colour codding:
+
+Green> No change all good
+Red> Failed
+Yellow> Changes are done
+white> simple linux things
+
+
+
+Ansible is tool under the categary of configuration management. with the help of ansible you can create/delete/update/retrive the infomation.
+
+In ansible you can either run command or run YAML file.
+
+1) When you are running commands, it is known as adhoc commands
+2) When you are running set of instruction in YAML formate is known as playbook.
+
+
+How to run adhoc command
+Ansible -i[inverntory] location_of_inverntory -m[module] -a[agrumemt] [name_of_servergroup]
+ansible -i /etc/ansible/hosts -m command -a "uptime" UMESH
+
+How many modules Ansible supports? around 500+
+
+
+
+docker build -t image1 dockerfile
+
+- name: Build image and with build args
+  docker_image:
+    name: image1
+    build:
+      path: .
+      args:
+    source: build
+
+
+YAML: YAML is formate to represent data. it support all the lanugage fundamental concept like ifelse, loops....
+-Name: Ron
+-Education
+    masterdegree
+    becholardegree
+    scholling
+-Hobbies
+    playing chess
+    playing cricket
+    playing football
+
+
+Monitoring:
+===========
+> In monitoring we monitor in and our everything.
+
+> Monitoring is way to prevent failure
+
+> In hospital doctor monitors health stats.
+
+file:///C:/Users/juhi3/Desktop/Ganesh%20Kripa%20Devops%20Engineer/Ganesh_Devops/Introduction%20to%20Devops%20by%20Sonika%20Rathi/Intro_to_DevOps_CS_8_Monitoring.pdf
+
+
+1) Log forwarding: in this stage we are forarding log to master server
+Master slave > central server and indivisual server
+
+For this all the monitoring tool are having some supporting tool
+like Splunk> splunk forwarder
+        ELK> Beat
+
+ubuntu $ touch server1.log.txt
+ubuntu $ touch server2.log.txt
+ubuntu $ touch server3.log.txt
+ubuntu $ vi server1.log.txt
+ubuntu $ vi server2.log.txt
+ubuntu $ vi server3.log.txt
+ubuntu $ grep -r fine
+server3.log.txt:server is working fine
+server1.log.txt:Server is working fine
+ubuntu $ grep -r issue
+ubuntu $ cat server2.log.txt
+Issue to start server
+ubuntu $ grep -r Issue
+server2.log.txt:Issue to start server
+
+
+
+2) Query the data as per need[log filtering]
+
+3) Visualization
+
+Ron	75	67	54    failed
+Olu	85	79	93    pass
+Rajesh	87	99	98    pass      topper
+Alex	40	50	77    failed
+Javed	76	67	54    failed
+Sandra	59	89	88    failed
+Juhi	78	89	88    pass
+
+Lets say passing criteria is marks should be greater then 70
+
+How many student are pass > 4
+
+who is topper> who is is pass and having highest marks
+
+All the monitoring tool support query language.
+
+
+Coloured Visulaization
+======================
+Red : Alert or failed
+Green : All good
+Yellow : Unstable
+
+
+Notification mechanism:
+======================
+Here, you need to just send the data
+
+https://sematext.com/blog/infrastructure-monitoring-tools/
+
