@@ -1,0 +1,115 @@
+Today's Agenda: Cloud computing, vi editor and SRE[site reliability Engineering]
+================================================================================
+
+Waiting for resource to join
+
+Cloud computing video: https://myawsbucketfordevopswork.s3.us-east-2.amazonaws.com/Cloud+Essentials.zip
+
+SRE[site reliability Engineering]
+=================================
+When you are working on different organisation you are having different job role like
+1) Database Engineer or Database specialist or SME(Subject matter expert), Databse
+
+Now, Devops Engineer in google know as Site reliability Engineer. 
+
+in Devops we have 5 principles, but in SRE we have 7 principles
+
+SRE principle: https://www.blameless.com/blog/sre-principles
+
+Embracing Risk
+Service Level Objectives
+Eliminating toil
+Monitoring
+Release Engineering
+Automation
+Simplicity
+
+Vi editor
+=========
+Task: write dockerfile to print hello word
+FROM ubuntu
+CMD echo "hello-world"
+
+To open a file> vi filename
+
+to write containt in file we need to open file in insert mode
+
+to enable insert mode: press i key
+to disable insert mode: press esc key
+
+to save the file first esc then :wq
+to quit we need to press esc then :q
+
+Process: Open file > insertmode > write data > esc + :wq
+
+cat command: to view containt of file
+===========
+ubuntu $ cat ron.txt
+ubuntu $ vi ron.txt 
+ubuntu $ cat ron.txt
+Hello
+
+Linux cheat sheat: https://www.guru99.com/linux-commands-cheat-sheet.html
+
+Cloud:
+=====
+
+In our day to day work there are lot of wastages.
+
+Marrige suit > Cost 500$ > Only Once you have wear the suit. sometime istead of purchaing rent would be good option. lets say intead of purchaing you have rented it into 100$, still you are saving 400 + it is not taking space in your almirah.
+
+Electicity, Option1: own power generator or Option2: electic meter and getting connection
+
+Cloud computing is basically a concept to use thing on rent instead of purchasing.
+
+Cloud provider: AWS, Azure, Google, IBM , Oracle....... 30000+ cloud providers
+
+What cloud provider will provide? They provide all the things that you need in software industry like computing, networking, storage and database with minimal cost, and you can upgrade them also very easily.
+
+
+AWS
+===
+How to create AWS account: https://docs.aws.amazon.com/accounts/latest/reference/manage-acct-creating.html
+
+Linux server in aws is known as EC2[ECC> Elastic code cloud]
+
+Putty: it's a tool by which we can login to linux server.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Homework: You need to watch video of cloud computing shared with you during class.
+
+
+
+
+
+
+
+
+
+
