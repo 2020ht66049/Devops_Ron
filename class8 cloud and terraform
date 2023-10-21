@@ -1,0 +1,290 @@
+Today's topic
+=============
+
+Cloud
+-----
+
+Cloud: https://myawsbucketfordevopswork.s3.us-east-2.amazonaws.com/Cloud+Essentials.zip
+
+When we want to work in IT industry we require couple of resources. those resources are primarily categrized into following catagary
+
+1) Compute
+2) Storage
+3) Networking
+4) Database.
+
+Generally, to get all these resources we need to follow process, and we need to pay money.
+
+In earlier day's we were/are having concept of traditinal infrastucture where we purchase the resource that we need.[Baremetal] 
+
+Capex:
+Opex:[Monthly basis, pay per use]
+
+But cloud comeup with a concept where you need to pay for Opex only. No capical expendeture needed.
+
+Proven case study: Using cloud can save upto 75% of your cost.
+
+Devops: Devops is Improvement.
+
+What is relationship between devops and cloud
+==============================================
+Cloud is a subset of Devops.
+
+
+Terraform
+=========
+Suppose, I want to create 1 linux terminal with 8GB RAM, and 100GB HDD.
+
+Traditional way: I will raise one precurement ticket for 8GB RAM, and 100GB HDD. This ticket needs approval from finance team, business team and project management team.
+
+Cloud way: Pre approval is given to resource.
+
+What is Terraform?
+Terraform is a way to speak with cloud to get resource configured.
+
+Example: I want to create 1 linux terminal with 8GB RAM, and 100GB HDD.
+
+Insalling terraform
+===================
+Link: https://developer.hashicorp.com/terraform/downloads
+
+root@ip-172-31-26-36:~# terraform --version
+Terraform v1.6.2
+on linux_amd64
+
+I want to create server with the help of terraform
+==================================================
+1) IAM[Identity and access management]: Here, I will be creating user, and that user would be having permission to create/delete/update/retrieve the resource.
+
+
+Access key and secrate key
+--------------------------
+Access key and secrate key are working as userid and password
+
+export AWS_ACCESS_KEY_ID=AKIAWGJPQBMN4CATBW7N
+export AWS_SECRET_ACCESS_KEY=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
+
+https://developer.hashicorp.com/terraform/tutorials/aws-get-started/aws-build
+
+Terraform is a tool by which we can control our infrastucture in cloud.
+
+Terraform init: It initialize communication between terraform and cloud provider
+terraform apply: It apply configuration written in main.tf file
+terraform destroy: It delete configuration written in main.tf file
+
+What is main.tf file
+=====================
+Terraform provider: 3500+ [Link: https://registry.terraform.io/browse/providers]
+
+It is the configuration that we need to use.
+
+How to write main.tf file
+==========================
+For writing main.tf file we must need knowledge of cloud.
+
+Click on provider, the click on use provider tab
+
+terraform {
+  required_providers {
+    aws = {
+      source = "hashicorp/aws"
+      version = "5.22.0"
+    }
+  }
+}
+
+provider "aws" {
+  # Configuration options
+}
+
+Configuration options
+=====================
+In configuration option we specify what we need. 
+Example: My requirment is I want to create EC2 instance.[AWS instance]
+
+https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance
+
+Why we need terraform
+=====================
+Suppose, I have my infrastucture running on in traditinal[or baremetal], now I need to move my infracture to cloud. So, I would be following the stangler pattern
+
+80% load[tradional]  > 20% [cloud]
+60% load[tradional]  > 40% [cloud]
+40% load[tradional]  > 60% [cloud]
+20% load[tradional]  > 80% [cloud]
+00% load[tradional]  > 100% [cloud]
+
+Multicloud architecture:
+=======================
+All the clouds are equally good, but they have expertise like
+
+Google cloud: Storage
+IBM cloud: reasearch
+Azure: Windows
+Oracle cloud: Network and Database
+
+How terraform is saving cost?
+=============================
+Suppose, I am working for US railway.[6 AM to 9 PM]
+
+I want server to started by 6AM
+       server to terminated by 9PM
+
+
+I am working on organization where they have
+
+Dev
+Test
+Preprod
+prod
+DR
+
+Earlier these environment running 24*7, now with the help of terraform I am able to use them effectively.
+
+Inftrastucture management by terraform
+======================================
+I want to change from 1GB RAM to 8 GB ram
+
+t2.micro
+t2.large
+
+
+
+* it tool under the categary of Infrastucture as code.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
