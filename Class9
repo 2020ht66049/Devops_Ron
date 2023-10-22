@@ -1,0 +1,298 @@
+Waiting for resource to join
+
+Pending topics
+1) K8s and Openshift[Introduction] > 2 classes
+2) CICD > 4 classes
+
+Topic We have completed.
+1) Docker
+2) Ansible
+3) Monitoring
+4) Basic introduction to Devops
+5) Basic introduction to cloud
+6) Golden image, packer and terraform
+
+
+
+Topic: CICD
+=====
+GIT 
+GITHUB
+GERRIT
+Jenkins
+Sonarqube
+artifactory
+maven
+testing
+
+
+Suppose, you are developer, and I am giving you task to create E-learning website. During website creation you must be having so many questions, for that you need to find your own solution.
+
+*** Developer thinking 10 yrs ahead.
+
+Exacize: Tell me step to draw elephant-
+
+So, it looks very easy, but actually it's very tough. lets say you are instructing me then definately we required some modification later.
+
+Think for a developer, he is working on 10 yrs ahead, so definately he do lots of mistake/experiment.
+
+When developer s writing the code, he do multiple changes to test the things, but in file he would be having latest only.
+
+Problem statement: We are not getting change history of file.
+
+Solution: to solve this problem we have one tool, called GIT.
+
+What is GIT?
+GIT is basically file change tracking system.[Version control system]
+
+Version control system?
+When we have software, we would be having the version, and with the help of version we are identifying the software
+<majorVersion><minorVersion><Fixpack>
+Example: https://www.jenkins.io/changelog/
+
+Repository: Repository is a place where we would be saving our changes.
+
+In GIT we have concept of repository where we would be saving this history.
+
+1) How to create account in GIThub
+[Link]: https://docs.github.com/en/get-started/signing-up-for-github/signing-up-for-a-new-github-account
+
+2) How to create repository in GIT hub
+[Link]: https://docs.github.com/en/get-started/quickstart/create-a-repo
+Repository naming converntion: The repository name can only contain ASCII letters, digits, and the characters ., -, and _
+
+Public- Anyone on the internet can see this repository. You choose who can commit.
+Private- You choose who can see and commit to this repository.
+
+When we are creating the repository, GIT will give you some set of commands which we don't understand now.
+
+…or create a new repository on the command line
+
+Get started by creating a new file or uploading an existing file. We recommend every repository include a README, LICENSE, and .gitignore. 
+
+echo "# ron22Oct2023" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/2020ht66049/ron22Oct2023.git
+git push -u origin main
+
+…or push an existing repository from the command line
+
+git remote add origin https://github.com/2020ht66049/ron22Oct2023.git
+git branch -M main
+git push -u origin main
+
+So, basically when we are working on GIT, GIT has 5 different areas-
+
+1) Working directory
+2) Staging area
+3) local repository
+4) Master/remote repository
+5) stash area
+
+Master/remote repository: The repository which is available over internet is known as master repository
+Example:https://github.com/2020ht66049/ron22Oct2023
+
+Local repository: Suppose, I want to do some changes, then it is not recomended to do directly in remote, better do changes in local, then test it, and then push changes to master
+
+GIT pull: remote to local
+GIT push: local to remote
+
+GIT clone: copy the changes as it is.
+ubuntu $ git clone https://github.com/2020ht66049/ron22Oct2023.git
+Cloning into 'ron22Oct2023'...
+remote: Enumerating objects: 9, done.
+remote: Counting objects: 100% (9/9), done.
+remote: Compressing objects: 100% (6/6), done.
+remote: Total 9 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (9/9), 1.91 KiB | 1.91 MiB/s, done.
+ubuntu $ ls
+filesystem  ron22Oct2023
+ubuntu $ cd ron22Oct2023/
+ubuntu $ ls
+Umesh  ron.txt
+
+Suppose, I created 1 folder in linux terminal, and I want to apply versioning over their.
+git init
+
+ubuntu $ git init
+Initialized empty Git repository in /root/ron/.git/
+
+Working directory: It is path from where we are running any command
+=================
+
+Linux command vs GIT command
+=============================
+in GIT command we would be having git as prefix
+git init
+git status
+git stash
+git pull
+git push
+
+Staging area:
+============
+Suppose, you have 100 MB image that you need to upload in passport portal, but passport portal accept only 2MB image, what you will do?
+Answer: compress
+100MB>Compress>2MB
+100MB>Compress>70MB>Compress>40MB>Compress>30>Compress>20>Compress>10>Compress>6>Compress>3>Compress>2MB
+
+In this area GIT do maximum number of compression. because of this we are able to store 12GB data[SVN] into 438MB
+
+Question1: In one repository how many local repository can be possible? > Multiple
+
+Question2: In one repository how many remote repository can be possible? > Only 1
+
+Question3: How git will identify who has done the changes?
+before you do any changes, you need to identify your id.
+Set your username: git config --global user.name "FIRST_NAME LAST_NAME"
+Set your email address: git config --global user.email "MY_NAME@example.com"
+
+ubuntu $ git config --global user.name "Umesh_chouksey"
+ubuntu $ git config --global user.email "Umesh.chouksey@gmail.com"
+ubuntu $ git config --list
+user.name=Umesh_chouksey
+user.email=Umesh.chouksey@gmail.com
+
+Git add: adding changes from working directory to stagging
+git commit: adding changes from staging to local
+
+ubuntu $ git push -u origin main
+Username for 'https://github.com': 2020ht66049
+Password for 'https://2020ht66049@github.com': 
+remote: Support for password authentication was removed on August 13, 2021.
+remote: Please see https://docs.github.com/en/get-started/getting-started-with-git/about-remote-repositories#cloning-with-https-urls for information on currently recommended modes of authentication.
+fatal: Authentication failed for 'https://github.com/2020ht66049/ron22Oct2023_2.git/'
+
+Note: if you are providing username and password in git, it is not going to work when you are pushing the changes from local to master, because GIT support only taken based authentication
+
+GIT to github communication
+===========================
+
+git remote set-url origin https://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@github.com/2020ht66049/patrick-rohan-janbask.git
+git remote set-url origin https://<GITHUB_ACCESS_TOKEN>@github.com/<GITHUB_USERNAME>/<REPOSITORY_NAME>.git
+
+Creating a repo: https://docs.github.com/en/get-started/quickstart/create-a-repo
+
+Token based authentication: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens
+
+git remote set-url origin https://github_pat_11ARSWXWI0DtYFGtm8NTFw_4DDqK5Znoe2tfupSEJmAqriU5h5BNExmfI5JSuLm3cSQYSYAPIM41a@github.com/2020ht66049/ron22Oct2023_2.git
+
+Reponame: https://github.com/2020ht66049/ron22Oct2023_2.git
+Token: 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
+
+git remote set-url origin https://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@github.com/2020ht66049/ron22Oct2023_2.git
+
+[Homework]
+Creating github repository- https://docs.github.com/en/get-started/quickstart/create-a-repo
+Creating github account-https://docs.github.com/en/get-started/signing-up-for-github/signing-up-for-a-new-github-account
+Types of repository- https://www.simplilearn.com/tutorials/git-tutorial/what-is-a-git-repository
+Username/email setup- https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup
+
+GIT commands practice.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
