@@ -1,0 +1,142 @@
+Git branching
+==============
+> Branching means parallel line of development
+
+> Syntax to create branch: git branch branch_name
+
+ubuntu $ git branch branch1
+ubuntu $ git branch branch2
+ubuntu $ git branch branch3
+ubuntu $ git branch
+  branch1
+  branch2
+  branch3
+* main
+
+[*] This shows what is current branch
+
+to change branch[I want to change any branch]: git checkout branch_name
+
+What is Branching?
+===================
+Lets say I have a code for e-learning website, and it's working fine.
+
+Now, let say client wants to do some changes.
+The beautiful thing about learning is that nobody can take it away from you > Replace > Learning is best thing you can have.
+
+We are not allowed to do changes in the production, so before doing any changes I need to do that changes in local environment and it is.
+
+
+Merging
+=======
+Adding changes from local branch to master branch
+
+1) 2 way merge
+
+2) 3 way merge
+
+
+Git Rebase: To rewrite history | to make history liner, git is having concept called rebase
+
+rebase will make changes liner.
+
+cherry pick: pick someone undelivered changes
+
+Revert: git push
+
+GIT tag:
+=======
+Suppose, we 5 got a task to create calculator
+Umesh : c1 c2 c3 c4
+Juhi X1 X2 X3 
+Ron P1 P2 P3
+Alex S1 S2 S3
+RAM N1 N2 N3
+
+git tag v1
+
+Docker compose, docker networking, docker swarm and docker on windows
+======================================================================
+Let say my requirement is I want to create website that show how many times refresh button is clicked
+
+How to check docker version : docker info / docker version
+
+$ docker compose version
+Docker Compose version v2.18.1
+
+Docker compose is multi container solution that running by default in docker host
+
+No one is using docker compose in real time.
+
+Docker networking
+==================
+C1
+C2
+
+Docker is only for linux, or windows also using it?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Pending Topic:
+
+1) Kubernetes
+2) Jenkins + Sonarqube, Artifactory, maven and quality gate
+
+3) DevSecOps
+4) CICD pipelines
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
