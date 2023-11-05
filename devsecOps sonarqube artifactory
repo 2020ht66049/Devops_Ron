@@ -1,0 +1,297 @@
+Waiting for resource to join
+
+Today's topic: DevSecOps/Snarqube/Artifactory/Jennkins
+
+Lenth: 200 minutes.
+
+DevSecOps: In this mathod we primarily deals with security
+
+SAST: Static Application Security Testing (SAST)
+DAST: Dynamic Application Security Testing (DAST)
+SCA: Software composition analysis
+
+Lets say we are having our code in GIThub, and we want to perform above analsis
+
+Static code analsis vs Dynamic code analysis
+============================================
+For an example, Developer has written some code[https://github.com/juice-shop/juice-shop]
+
+<user.name>umesh</user.name>
+<user.password>umesh@321</user.password>
+
+Here, we will see the fault in the code.
+
+Dynamic code analysis
+=====================
+Website is connection of pages.
+Lets talk about one application called gmail
+
+Gmail home page: https://mail.google.com/mail/u/0/?ogbl
+Compose mail: https://mail.google.com/mail/u/0/?ogbl#inbox?compose=new
+sent mail: https://mail.google.com/mail/u/0/?ogbl#sent?compose=new
+
+
+let me give you 15 minutes break you do practice. I am here only
+
+Sonarqube:
+==========
+Tool URl: https://sonarcloud.io/login
+
+2020ht66049
+spring-petclinic
+Public
+Not computed
+Last analysis: 7/26/2023, 6:49 AM
+9.7k Lines of Code
+CSS, Java, ...
+C
+40
+Bugs
+2+2=4[correct code]
+2+2=3[bug]
+A
+0
+Vulnerabilities
+A
+100%
+Hotspots Reviewed
+A
+28
+Code Smells
+0.0%
+Duplications
+
+
+Duplications
+
+from ubuntu
+cmd echo "Hello"
+cmd echo "Hello"
+
+
+
+Code Smells > Allocating the memory, perform the task
+https://www.geeksforgeeks.org/dynamic-memory-allocation-in-c-using-malloc-calloc-free-and-realloc/
+
+Vulnerabilities
+
+
+Bugs
+
+WORA: Write once use any where
+=====
+
+git clone https://github.com/spring-projects/spring-petclinic.git
+cd spring-petclinic
+./mvnw package
+java -jar target/*.jar
+
+Development
+
+Test
+
+Preprod
+
+Prod
+
+DR
+
+
+Create on artifactory with name rondocker and push image ron1 into it.
+=======================================================================
+URL: https://jfrog.com/artifactory/ 
+
+Pull: docker pull janbask.jfrog.io/docker/hello-world:latest
+
+Push: 
+
+docker tag ronimage janbask.jfrog.io/docker/ronimage:1.0.0
+
+docker push janbask.jfrog.io/docker/hello-world:1.0.0
+
+
+janbask.jfrog.io/docker/ronimage:1.0.0
+
+
+
+ubuntu $ docker pull janbask.jfrog.io/docker/ronimage:1.0.0
+Error response from daemon: Head "https://janbask.jfrog.io/v2/docker/ronimage/manifests/1.0.0": unknown: Authentication is required
+
+ubuntu $ docker pull janbask.jfrog.io/docker/ronimage:1.0.0
+Error response from daemon: Head "https://janbask.jfrog.io/v2/docker/ronimage/manifests/1.0.0": unknown: Authentication is required
+ubuntu $ docker login -udevopschamp143@gmail.com janbask.jfrog.io
+Password: 
+WARNING! Your password will be stored unencrypted in /root/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+ubuntu $ docker pull janbask.jfrog.io/docker/ronimage:1.0.0
+1.0.0: Pulling from docker/ronimage
+43f89b94cd7d: Downloading  2.192MB/30.44MB
+
+
+
+
+
+
+We will resume by 12:30
+
+
+
+
+
+
+
+
+
+
+Ron, are you able to hear me?
+
+are you there?
+
+OWASP10
+
+Quality gate
+============
+My requirement is to write a calculator pargram:
+
+# This function adds two numbers
+def add(x, y):
+    return x + y
+
+# This function subtracts two numbers
+def subtract(x, y):
+    return x - y
+
+# This function multiplies two numbers
+def multiply(x, y):
+    return x * y
+
+# This function divides two numbers
+def divide(x, y):
+    return x / y
+
+
+print("Select operation.")
+print("1.Add")
+print("2.Subtract")
+print("3.Multiply")
+print("4.Divide")
+
+while True:
+    # take input from the user
+    choice = input("Enter choice(1/2/3/4): ")
+
+    # check if choice is one of the four options
+    if choice in ('1', '2', '3', '4'):
+        try:
+            num1 = float(input("Enter first number: "))
+            num2 = float(input("Enter second number: "))
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+            continue
+
+        if choice == '1':
+            print(num1, "+", num2, "=", add(num1, num2))
+
+        elif choice == '2':
+            print(num1, "-", num2, "=", subtract(num1, num2))
+
+        elif choice == '3':
+            print(num1, "*", num2, "=", multiply(num1, num2))
+
+        elif choice == '4':
+            print(num1, "/", num2, "=", divide(num1, num2))
+        
+        # check if user wants another calculation
+        # break the while loop if answer is no
+        next_calculation = input("Let's do next calculation? (yes/no): ")
+        if next_calculation == "no":
+          break
+    else:
+        print("Invalid Input")
+
+
+Out of 55 we are using 11 line. so use percent is 20%
+
+Line coverage should be greater than 80%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
