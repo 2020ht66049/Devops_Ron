@@ -1,0 +1,238 @@
+Today Agenda: ChatGPT, K8s architecture and k8s contoller
+============
+
+Notes location: https://github.com/JanbaskDevops/studyMatarial/tree/main/1-%20Container/K8s
+
+ChatGPT: 
+
+It's basically search engine where you can put your query, and you would be getting only 1 answer which is the most perfect answer you can get from internet.
+Suppose, you want to seach engine instead of chat GPT than also fine, but you would be getting multiple answers in seach engine.
+I want to write hHappy brith message to my friend in 30 words.
+
+Containers:
+============
+Docker: Here we are packing application along with dependancies.
+
+Problem with Docker: Year 2011/2012[When docker introduced], Docker was a very good concept, everyone agreed to it, but no one want to implement it.
+
+Reason: Docker was very new technology, and it's parent[dotCloud] was also new to market.
+
+Offer1: IBM 130K $/Month
+Offer2: Kendryl 135K $/Month
+Offer3: Microsoft 133k $/Month
+Offer4: xyz 180K $/Month
+
+Laptop Dell: 500$
+Laptop HP: 551$
+Laptop Lenovo: 458$
+Laptop XYZ: 300$
+
+Initially, few few companies accepted docker technologies, but later[after 3 yrs] Google jumped into this business.
+
+OpenSource: Here, you would be putting your code open for everyone.
+
+Docker was kind of opensorce software, so compiness started customizing it.
+
+Initially Docker[dotCloud] tried to competete with Google, but later Dotcloud relaize that they can't competete, so they joined hand togather.
+
+Docker+K8s: 
+Docker
+Docker networking
+docker Swarm
+Docker compose
+
+
+Kubernetes architecture
+=======================
+Docker is single host solution, but kubernetes is a multi host solution.
+
+Kubernetes is designed to support up to 5000 nodes. However, this is not a hard constraint, as the team at Google demonstrated by allowing you to run GKE clusters with 15,000 nodes.
+
+In kuebertes we have 2 components-
+Master
+======
+
+REST API: Bank of america, CITI bank, PMC Bank.
+You are going to apply for loan into Bank of america. They will check your credit, and your existing loan.
+
+It's impementation where we can intract with different technologies-
+Create update delete retrive[CURD]
+
+Kubelet and kubeadm are the exaple of tools that kubernetes uses.
+
+1) API server- Here, I would be expressing my requirement in YAML formate
+2) Schedular- It's basic functionality is to create the needful resourec
+3) controller- it's basically a function which alway compare current configuration with existing configuration, report to AP Server
+4) etcd- It's source of truth. Here my before creating anything my schedular will check, how many I need to CURD.
+
+Slave[Upto 5000]
+================
+1) kubelet: it's agent between master and slave
+2) kubeproxy: it's basically networking implementation.
+3) containers
+
+
+controlplane $ kubectl get pods
+No resources found in default namespace.
+controlplane $ kubectl apply -f replicaSet.yaml 
+replicaset.apps/frontend created
+controlplane $ kubectl get pods
+NAME             READY   STATUS              RESTARTS   AGE
+frontend-5g8qt   0/1     ContainerCreating   0          4s
+frontend-ckpcz   0/1     ContainerCreating   0          4s
+frontend-sh9hq   0/1     ContainerCreating   0          4s
+
+Let say my requirement is I want I have 10 pods
+
+container vs pod
+================
+Container in kubernetes called Pod
+
+How we create container in docker-
+docker run options
+kubectl [YAML formate]
+
+kubectl apply/delete/update/get -f <file-name-where-configurations-are -given>
+
+container
+<ApiVersion>
+<kind>
+<Metadata>
+<Specification>
+
+Kubernetes installtion
+======================
+
+Kubernetes installation: Kubernetes installation is very straight forrward, but it looks complex. so recomedation is alway use official documentation.
+
+https://kubernetes.io/docs/setup/
+https://kubernetes.io/releases/download/
+https://kubernetes.io/docs/tasks/tools/
+https://kubernetes.io/docs/setup/production-environment/container-runtimes/
+https://kubernetes.io/docs/setup/best-practices/
+
+Lab: for Lab purpose we would be using killercoda. https://killercoda.com/playgrounds/scenario/kubernetes
+
+curl -OL https://go.dev/dl/go1.21.4.linux-amd64.tar.gz
+sha256sum go1.21.4.linux-amd64.tar.gz
+sudo tar -C /usr/local -xvf go1.21.4.linux-amd64.tar.gz
+
+
+sudo vi ~/.profile
+
+
+
+
+apt-get update ; apt install docker.io -y
+apt-get update ; apt install make -y
+
+curl -OL https://go.dev/dl/go1.21.4.linux-amd64.tar.gz
+sha256sum go1.21.4.linux-amd64.tar.gz
+sudo tar -C /usr/local -xvf go1.21.4.linux-amd64.tar.gz
+
+sudo vi ~/.profile
+export PATH=$PATH:/usr/local/go/bin
+
+source ~/.profile
+
+echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+
+kubeadm init --pod-network-cidr "10.244.0.0/16" --ignore-preflight-errors=NumCPU --ignore-preflight-errors=Mem --cri-socket "unix:///var/run/cri-dockerd.sock"
+
+sudo apt-get update
+# apt-transport-https may be a dummy package; if so, you can skip that package
+sudo apt-get install -y apt-transport-https ca-certificates curl gpg
+
+curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+
+echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+
+sudo apt-get update
+sudo apt-get install -y kubelet kubeadm kubectl
+sudo apt-mark hold kubelet kubeadm kubectl
+
+root@ip-172-31-8-244:~/cri-dockerd# kubectl get nodes
+NAME              STATUS   ROLES           AGE   VERSION
+ip-172-31-8-244   Ready    control-plane   10m   v1.28.3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
