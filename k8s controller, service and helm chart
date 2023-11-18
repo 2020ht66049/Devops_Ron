@@ -1,0 +1,233 @@
+Today Agenda:
+============
+
+Devops IAC challenge > https://github.com/hca-dev/iac-code-challenge
+
+DevOps is all about improvment, and these days AI and chatGPT are in trends
+
+
+Create dockerfile for below instruction
+git clone https://github.com/spring-projects/spring-petclinic.git
+cd spring-petclinic
+./mvnw package
+java -jar target/*.jar
+
+I want to creating voting application to find best technology between Devops and Cloud
+
+
+
+K8s Controller, service and helm chart
+======================================
+
+When we are running application in docker we are specifying few parameter
+container > Pod
+
+Google say we would be using a framework to write specfication about pod that could be either in YAML or JSON
+
+---
+API-VERSION #Kubernetes uses rest API and they provide rest API version that we need use[v1, app/v1....]
+KIND # You need to specify what you want to create [POD, replica-set, replication-controller]
+META-DATA # You need to specify about kind meta data[POD name= Ron]
+SPECIFICATION # You need to write what you need
+---
+
+Do I need to know how to write YAML file?
+No, you should just know how to use chat GPT or documement. Today down the line we would be learning one tool[Helm] that tool automatically generate those YAML file
+
+
+POD: https://kubernetes.io/docs/concepts/workloads/pods/
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.14.2
+    ports:
+    - containerPort: 80
+
+
+controlplane $ kubectl get pods 
+No resources found in default namespace.
+
+
+controlplane $ kubectl get nodes
+NAME           STATUS   ROLES           AGE    VERSION
+controlplane   Ready    control-plane   4d6h   v1.28.1
+node01         Ready    <none>          4d6h   v1.28.1
+controlplane $ kubectl get pods 
+No resources found in default namespace.
+controlplane $ vi pod.yaml
+controlplane $ kubectl apply -f pod.yaml 
+pod/nginx created
+controlplane $ kubectl get pods
+NAME    READY   STATUS              RESTARTS   AGE
+nginx   0/1     ContainerCreating   0          4s
+controlplane $ kubectl get pods -o wide
+NAME    READY   STATUS    RESTARTS   AGE   IP            NODE     NOMINATED NODE   READINESS GATES
+nginx   1/1     Running   0          16s   192.168.1.3   node01   <none>           <none>
+
+controlplane $ kubectl delete -f pod.yaml 
+pod "nginx" deleted
+controlplane $ kubectl get pods
+No resources found in default namespace.
+
+How to create the Pod, and how it is link to docker?
+====================================================
+
+Do you think 1 pod would be enought?
+
+A cluster is a set of nodes (physical or virtual machines) running Kubernetes agents, managed by the control plane. Kubernetes v1.28 supports clusters with up to 5,000 nodes. More specifically, Kubernetes is designed to accommodate configurations that meet all of the following criteria:
+
+    No more than 110 pods per node
+    No more than 5,000 nodes
+    No more than 150,000 total pods
+    No more than 300,000 total containers
+
+You can scale your cluster by adding or removing nodes. The way you do this depends on how your cluster is deployed.
+
+Lets say I want to create more than 110 pod/node, can I do that? [Danger]
+Not advisable
+
+Instead of writing multiple YAML to create similar pod, k8s given concept of replica.
+https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/
+
+
+Replication controller
+======================
+
+Difference between replicaset and replocation controller
+
+The difference between a replica set and a replication controller is that a replica set supports set-based selector requirements whereas a replication controller only supports equality-based selector requirements.
+
+Let say I have 5 environment [Dev QA Test UAT and Prod], and in each environment I have 2 pod with name nginx
+total pods: 10
+
+List[Environment = Dev & Test & QA] > 6
+List[Environmet=all] > 10
+List[Prod and UAT] > 4
+
+
+= operation
+
+& Operator
+
+|| Operator
+
+Replicaset people are using now, and replication controller is retiered.
+
+Daemon set
+==========
+Suppose, I want run 1 pod/node[Antivirus]
+
+
+Daemonset
+=========
+https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/
+
+
+Job/Cronjob
+============
+# Lets Say I have requirement, I want to run one pod with name nginx[Pod, RC, RS, DS]
+
+# Suppose you want to create pod, then it's advisable to create by Job, so you would be getting addional feature[restart policy, backofflimit]
+
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: pi
+spec:
+  template:
+    spec:
+      containers:
+      - name: pi
+        image: perl:5.34.0
+        command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi(2000)"]
+      restartPolicy: Never
+  backoffLimit: 4
+
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.14.2
+    ports:
+    - containerPort: 80
+
+
+A Job creates one or more Pods and will continue to retry execution of the Pods until a specified number of them successfully terminate. As pods successfully complete, the Job tracks the successful completions. When a specified number of successful completions is reached, the task (ie, Job) is complete. Deleting a Job will clean up the Pods it created. Suspending a Job will delete its active Pods until the Job is resumed again.
+
+
+Cronjob
+=======
+I am govt of USA, and I have my railway system, and I want stop my pod everyday by 6 PM, and start my pod everyday by 9 AM
+
+
+Services
+========
+Lets understand, I have one application where number of user are fluctuating, and I am creating pod as per number of customer
+I have 10, 20, 200, 1000, 900........
+
+We have 4 types of service
+
+1) ClusterIP > its used for internal communication between network
+2) Nodeport > Node1> port8080 container82
+3) Load balancer > It used for external communication
+4) Headless > Directly accessing container
+
+
+Ingress > multiload balancer system, security
+=======
+
+television> venders[LG, samsung, .....] > different[size] > Different Model[with HD, without HD]
+
+https://kubernetes.io/docs/concepts/services-networking/service/
+
+
+Deployment set[We need Database] and statefulset[Where we dnot need DB]
+===============================
+Type1: That required external database
+Step1: I will create order and do payment> payment ref id
+Step2: packing and courier of my product
+Step3: delivery
+Step4: caseclose
+
+return [reverse]
+
+Type2: That don't required database, they have their own db > calcultor
+
+
+Deploymenet set
+
+Statefulset 
+
+Lets take 5 minutes break
+
+Helm
+====
+https://helm.sh/docs/
+
+How to install helm?
+====================
+$ curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+$ chmod 700 get_helm.sh
+$ ./get_helm.sh
+
+
+Chart?: it is basically set of YAML file club togather for specific purpose
+
+helm create <chart-name>
+controlplane $ helm create umesh      
+Creating umesh
+
+bitnami chart:
+I want to install jenkins/MongoDb
+
+
+
